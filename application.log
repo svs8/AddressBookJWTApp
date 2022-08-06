@@ -1,0 +1,40 @@
+2022-08-07 00:00:00.284  INFO 10724 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-07 00:00:00.540  INFO 10724 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-08-07 00:00:00.849  INFO 10724 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-08-07 00:01:02.964  INFO 17088 --- [main] c.b.a.AddressBookJwtAppApplication       : Starting AddressBookJwtAppApplication using Java 18.0.1 on LAPTOP-4BSBUFAS with PID 17088 (C:\CFPProjects\AddressBookJWTApp\target\classes started by Hp in C:\CFPProjects\AddressBookJWTApp)
+2022-08-07 00:01:02.972  INFO 17088 --- [main] c.b.a.AddressBookJwtAppApplication       : The following 1 profile is active: "dev"
+2022-08-07 00:01:07.730  INFO 17088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-07 00:01:08.077  INFO 17088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 295 ms. Found 1 JPA repository interfaces.
+2022-08-07 00:01:13.570  INFO 17088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2022-08-07 00:01:13.709  INFO 17088 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-07 00:01:13.711  INFO 17088 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-08-07 00:01:15.095  INFO 17088 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-07 00:01:15.096  INFO 17088 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 11842 ms
+2022-08-07 00:01:28.338  INFO 17088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-07 00:01:29.377  INFO 17088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-07 00:01:37.599  INFO 17088 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-07 00:01:39.282  WARN 17088 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-07 00:01:39.940  INFO 17088 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2022-08-07 00:01:41.102  INFO 17088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2022-08-07 00:01:41.170  INFO 17088 --- [main] c.b.a.AddressBookJwtAppApplication       : Started AddressBookJwtAppApplication in 41.408 seconds (JVM running for 51.985)
+2022-08-07 00:03:31.965  INFO 17088 --- [http-nio-9090-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-07 00:30:59.489  INFO 17088 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-07 00:30:59.527  INFO 17088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-08-07 00:30:59.535  INFO 17088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-08-07 00:32:00.320  INFO 18368 --- [main] c.b.a.AddressBookJwtAppApplication       : Starting AddressBookJwtAppApplication using Java 18.0.1 on LAPTOP-4BSBUFAS with PID 18368 (C:\CFPProjects\AddressBookJWTApp\target\classes started by Hp in C:\CFPProjects\AddressBookJWTApp)
+2022-08-07 00:32:00.328  INFO 18368 --- [main] c.b.a.AddressBookJwtAppApplication       : The following 1 profile is active: "dev"
+2022-08-07 00:32:02.553  INFO 18368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-07 00:32:02.707  INFO 18368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 133 ms. Found 1 JPA repository interfaces.
+2022-08-07 00:32:04.522  INFO 18368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2022-08-07 00:32:04.539  INFO 18368 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-07 00:32:04.541  INFO 18368 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-08-07 00:32:04.854  INFO 18368 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-07 00:32:04.855  INFO 18368 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4370 ms
+2022-08-07 00:32:07.227  INFO 18368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-07 00:32:07.581  INFO 18368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-07 00:32:10.292  INFO 18368 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-07 00:32:11.178  WARN 18368 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-07 00:32:11.621  INFO 18368 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2022-08-07 00:32:12.517  INFO 18368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2022-08-07 00:32:12.539  INFO 18368 --- [main] c.b.a.AddressBookJwtAppApplication       : Started AddressBookJwtAppApplication in 13.517 seconds (JVM running for 17.285)
+2022-08-07 00:32:20.349  INFO 18368 --- [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
