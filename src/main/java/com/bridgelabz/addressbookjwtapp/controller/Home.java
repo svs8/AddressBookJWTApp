@@ -2,6 +2,7 @@ package com.bridgelabz.addressbookjwtapp.controller;
 
 
 import com.bridgelabz.addressbookjwtapp.dto.ResponseDTO;
+import com.bridgelabz.addressbookjwtapp.dto.UserNameOtpDTO;
 import com.bridgelabz.addressbookjwtapp.entity.AddressBookDTO;
 import com.bridgelabz.addressbookjwtapp.entity.AddressBookData;
 import com.bridgelabz.addressbookjwtapp.service.user.IAddressBookService;
@@ -16,6 +17,10 @@ import java.util.List;
 
 @RestController
 public class Home {
+
+    final static String SUCCESS = "Entered Otp is valid, and Registration was successful.";
+    final static String FAIL = "Entered OTP was not valid! , Registration failed!, please try again";
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -42,12 +47,6 @@ public class Home {
     }
 
     //All the below APIs Should be accessible to authenticated user only
-    @PostMapping(value = {"/add"})
-    public ResponseEntity<ResponseDTO> addAddressBookData(@Valid @RequestBody AddressBookDTO addressBookDTO) {
-        AddressBookData addressBookData=userService.createAddressBookData(addressBookDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Data got added Successfully!!!",addressBookData);
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
-    }
 
     @GetMapping(value = {"/get"})
     public ResponseEntity<ResponseDTO> getAddressBookData() {
@@ -66,6 +65,7 @@ public class Home {
     @PutMapping(value = {"/edit/{personId}"})
     public ResponseEntity<ResponseDTO> editAddressBookData(@PathVariable long personId,
                                                            @Valid @RequestBody AddressBookDTO addressBookDTO) {
+        addressBookDTO.setPassword(passwordEncoder.encode(addressBookDTO.getPassword()));
         AddressBookData addressBookData=userService.updateAddressBookData(personId,addressBookDTO);
         ResponseDTO responseDTO = new ResponseDTO("Data updated Successfully!!!",addressBookData);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
@@ -107,6 +107,16 @@ public class Home {
         List<AddressBookData> addressBookList = userService.orderContactsByState();
         ResponseDTO responseDTO = new ResponseDTO("Contact details sorted by State!!!", addressBookList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @PostMapping({"/verifyotp"})
+    public String verifyOtp(@Valid @RequestBody UserNameOtpDTO userNameOtpDTO) {
+        String username = userNameOtpDTO.getUsername();
+        String otp = userNameOtpDTO.getOtp();
+        Boolean isVerifyOtp = userService.verifyOtp(username, otp);
+        if (!isVerifyOtp)
+            return FAIL;
+        return SUCCESS;
     }
 
 

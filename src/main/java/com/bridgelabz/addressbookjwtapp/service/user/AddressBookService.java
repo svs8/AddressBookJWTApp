@@ -1,8 +1,11 @@
 package com.bridgelabz.addressbookjwtapp.service.user;
 import com.bridgelabz.addressbookjwtapp.entity.AddressBookDTO;
 import com.bridgelabz.addressbookjwtapp.entity.AddressBookData;
+import com.bridgelabz.addressbookjwtapp.entity.UserNameOtpData;
 import com.bridgelabz.addressbookjwtapp.exception.AddressBookException;
 import com.bridgelabz.addressbookjwtapp.repository.IAddressBookRepository;
+import com.bridgelabz.addressbookjwtapp.repository.IUserNameOtpRespository;
+import com.bridgelabz.addressbookjwtapp.service.EmailSenderService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,22 @@ public class AddressBookService implements IAddressBookService {
 
 
     @Autowired
+    EmailSenderService senderService;
+
+    @Autowired
     private IAddressBookRepository iAddressBookRepository;
+
+    @Autowired
+    IUserNameOtpRespository iUserNameService;
 
     @Override
     public AddressBookData addUser(AddressBookDTO addressBookDTO) {
         AddressBookData user = modelMapper.map(addressBookDTO, AddressBookData.class);
+        int otps = (int) Math.floor(Math.random() * 1000000);
+        String otp = String.valueOf(otps);
+        UserNameOtpData userNameOtp = new UserNameOtpData(addressBookDTO.username, otp);
+        iUserNameService.save(userNameOtp);
+        senderService.sendEmail(user.getEmail(), "OTP for Registration", otp);
         return iAddressBookRepository.save(user);
     }
 
@@ -31,13 +45,6 @@ public class AddressBookService implements IAddressBookService {
         return null;
     }
 
-    @Override
-    public AddressBookData createAddressBookData(AddressBookDTO addressBookDTO) {
-        AddressBookData addressBookData = modelMapper.map(addressBookDTO, AddressBookData.class);
-        log.debug("Emp Data: " +addressBookData.toString());
-        iAddressBookRepository.save(addressBookData);
-        return addressBookData;
-    }
 
     @Override
     public List<AddressBookData> getAddressBookData() {
@@ -63,6 +70,11 @@ public class AddressBookService implements IAddressBookService {
     public AddressBookData updateAddressBookData(long personId, AddressBookDTO addressBookDTO) {
         AddressBookData addressBookData = this.getAddressBookDataById(personId);
         modelMapper.map(addressBookDTO, addressBookData);
+        int otps = (int) Math.floor(Math.random() * 1000000);
+        String otp = String.valueOf(otps);
+        UserNameOtpData userNameOtp = new UserNameOtpData(addressBookDTO.username, otp);
+        iUserNameService.save(userNameOtp);
+        senderService.sendEmail(addressBookData.getEmail(), "OTP for Updating Details.", otp);
         iAddressBookRepository.save(addressBookData);
         return addressBookData;
     }
@@ -84,5 +96,22 @@ public class AddressBookService implements IAddressBookService {
         return iAddressBookRepository.orderContactsByState();
     }
 
+    @Override
+    public Boolean verifyOtp(String username, String otp) {
+        UserNameOtpData serverOtp = iUserNameService.findByUsername(username);
+
+        if (otp == null)
+            return false;
+        if(!(otp.equals(serverOtp.getOtp())))
+            return false;
+        iAddressBookRepository.changeVerified(username);
+        iUserNameService.deleteEntry(username);
+        return true;
+    }
+
+    @Override
+    public Boolean isVerified(String username) {
+        return iAddressBookRepository.isVerified(username);
+    }
 
 }

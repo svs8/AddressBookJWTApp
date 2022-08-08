@@ -9,8 +9,6 @@ public interface IAddressBookService {
     public AddressBookData addUser(AddressBookDTO user);
     public List<AddressBookData> getUsers();
 
-    AddressBookData createAddressBookData(AddressBookDTO addressBookDTO);
-
     List<AddressBookData> getAddressBookData();
 
     AddressBookData getAddressBookDataById(long personId);
@@ -26,4 +24,8 @@ public interface IAddressBookService {
     List<AddressBookData> orderContactsByCity();
 
     List<AddressBookData> orderContactsByState();
+
+    Boolean verifyOtp(String username, String otp);
+
+    Boolean isVerified(String username);
 }
