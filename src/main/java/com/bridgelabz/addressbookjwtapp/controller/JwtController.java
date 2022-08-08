@@ -4,6 +4,7 @@ import com.bridgelabz.addressbookjwtapp.entity.JwtResponse;
 import com.bridgelabz.addressbookjwtapp.entity.AddressBookDTO;
 import com.bridgelabz.addressbookjwtapp.helper.JwtUtil;
 import com.bridgelabz.addressbookjwtapp.service.CustomUserDetailsService;
+import com.bridgelabz.addressbookjwtapp.service.user.AddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +28,9 @@ public class JwtController {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private AddressBookService addressBookService;
+
 
     //login api is accessible for all the users
     @PostMapping("/token")
@@ -35,9 +39,10 @@ public class JwtController {
         try {
             String username = addressBookDTO.getUsername();
             String password = addressBookDTO.getPassword();
-
+            Boolean isVerified = addressBookService.isVerified(username);
+            if (!isVerified)
+                return ResponseEntity.ok(new JwtResponse("User not verified, Please do the verification first."));
             UsernamePasswordAuthenticationToken user = new UsernamePasswordAuthenticationToken(username, password);
-            //checks if the user exits
             this.authenticationManager.authenticate(user);
 
 
